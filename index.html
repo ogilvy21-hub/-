@@ -213,7 +213,6 @@
 <body>
   <div class="container">
     <div class="header">
-      <button class="download-btn" onclick="downloadEbook()">📥 전자책 다운로드</button>
       <h1>도덕적인 사람일수록<br>왜 더 화가 많은가?</h1>
       <p class="subtitle">도덕적 분노의 과학과 해법</p>
     </div>
@@ -339,46 +338,5 @@
     }
   </script>
 </body>
-</html>`;
 
-      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = '도덕적_분노의_과학과_해법.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      
-      // 다운로드 완료 알림
-      const btn = document.querySelector('.download-btn');
-      const originalText = btn.textContent;
-      btn.textContent = '✅ 다운로드 완료!';
-      btn.style.background = 'rgba(34, 197, 94, 0.3)';
-      
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = 'rgba(255,255,255,0.2)';
-      }, 2000);
-    }
-
-    // 부드러운 스크롤 효과를 위한 Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.chapter').forEach(chapter => {
-      chapter.style.opacity = '0';
-      chapter.style.transform = 'translateY(30px)';
-      chapter.style.transition = 'all 0.6s ease-out';
-      observer.observe(chapter);
-    });
-  </script>
-</body>
 </html>
